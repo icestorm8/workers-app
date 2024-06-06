@@ -12,7 +12,7 @@ export default function MoreInfo() {
   const [isFav, setIsFav] = useState(false);
   const [searchParams] = useSearchParams();
   var index = searchParams.get("index");
-  var company = searchParams.get("company");
+  var company = searchParams.get("company") || "abc";
   const [employee, setEmployee] = useState(null);
   const navigate = useNavigate();
 

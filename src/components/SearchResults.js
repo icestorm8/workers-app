@@ -10,7 +10,7 @@ export default function SearchResults() {
     const doApi = async () => {
       try {
         // const url = `https://randomuser.me/api/?results=10`;
-        const seedQuery = searchParams.get("search");
+        const seedQuery = searchParams.get("search") || "abc";
         const queryUrl = `https://randomuser.me/api/?results=10&seed=${seedQuery}`;
         const res = await fetch(queryUrl);
         const data = await res.json();
