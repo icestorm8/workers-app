@@ -6,7 +6,10 @@ export default function SearchBar() {
   const searchRef = useRef(null);
 
   const handleSearch = () => {
-    navigate(`/?search=${searchRef.current.value}`);
+    var query = searchRef.current.value;
+    query === ""
+      ? navigate(`/`)
+      : navigate(`/?search=${searchRef.current.value}`);
   };
   return (
     <div className="input-group w-25 container">
