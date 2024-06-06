@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { AppContext } from "../context/Context";
 const starStyle = {
   fontSize: "40px",
   color: "orange",
 };
 export default function MoreInfo() {
+  const { addFav, removeFav, isSaved } = useContext(AppContext);
   const [isFav, setIsFav] = useState(false);
   const [searchParams] = useSearchParams();
   var index = searchParams.get("index");
@@ -27,8 +29,13 @@ export default function MoreInfo() {
       }
     };
     doApi();
-  });
+  }, []);
 
+  useEffect(() => {
+    if (employee != null) {
+      setIsFav(isSaved(employee.login.uuid));
+    }
+  }, [employee]);
   const goBack = () => {
     navigate(`/?search=${company}`);
   };
@@ -40,9 +47,21 @@ export default function MoreInfo() {
           <h1>
             Info about: {employee.name.first} {employee.name.last}{" "}
             {isFav ? (
-              <FaStar style={starStyle} onClick={() => setIsFav(!isFav)} />
+              <FaStar
+                style={starStyle}
+                onClick={() => {
+                  setIsFav(false);
+                  removeFav(employee.login.uuid);
+                }}
+              />
             ) : (
-              <FaRegStar style={starStyle} onClick={() => setIsFav(!isFav)} />
+              <FaRegStar
+                style={starStyle}
+                onClick={() => {
+                  setIsFav(true);
+                  addFav(employee);
+                }}
+              />
             )}
           </h1>
           <img

@@ -9,7 +9,6 @@ export default function SearchResults() {
   useEffect(() => {
     const doApi = async () => {
       try {
-        const url = `https://randomuser.me/api/?results=10&seed=abc`;
         const seedQuery = searchParams.get("search") || "abc";
         const queryUrl = `https://randomuser.me/api/?results=10&seed=${seedQuery}`;
         const res = await fetch(queryUrl);
@@ -39,7 +38,7 @@ export default function SearchResults() {
               index={index}
             />
           ))}
-        {fetchedData.length == 0 && (
+        {fetchedData.length === 0 && (
           <h1 className="text-danger">error: {errorMsg}</h1>
         )}
       </div>

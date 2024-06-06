@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { AppContext } from "../context/Context";
 
 const starStyle = {
   fontSize: "40px",
@@ -10,13 +11,16 @@ const starStyle = {
   right: "2%",
 };
 export default function WorkerCard({ worker, index }) {
-  const [isFav, setIsFav] = useState(false);
+  const { addFav, removeFav, isSaved } = useContext(AppContext);
+  const [isFav, setIsFav] = useState(isSaved(worker.login.uuid));
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+
   const viewInfo = (index) => {
     var company = searchParams.get("search") || "abc";
     navigate(`employee/?company=${company}&index=${index}`);
   };
+
   return (
     <div className="card  d-flex flex-row  m-1" style={{ width: "40%" }}>
       <img
@@ -37,9 +41,21 @@ export default function WorkerCard({ worker, index }) {
           more info
         </button>
         {isFav ? (
-          <FaStar style={starStyle} onClick={() => setIsFav(!isFav)} />
+          <FaStar
+            style={starStyle}
+            onClick={() => {
+              setIsFav(false);
+              removeFav(worker.login.uuid);
+            }}
+          />
         ) : (
-          <FaRegStar style={starStyle} onClick={() => setIsFav(!isFav)} />
+          <FaRegStar
+            style={starStyle}
+            onClick={() => {
+              setIsFav(true);
+              addFav(worker);
+            }}
+          />
         )}
       </div>
     </div>
