@@ -3,7 +3,7 @@ export const AppContext = createContext(null);
 
 export default function ContextProvider(props) {
   const [favs, setFavs] = useState([]);
-
+  // localStorage.removeItem('favs');
   const removeFav = (uuid) => {
     if (window.confirm("are you sure?")) {
       var filtered = favs.filter((fav) => {
@@ -23,7 +23,7 @@ export default function ContextProvider(props) {
     var filtered = favs.filter((fav) => {
       return fav.login.uuid === uuid;
     });
-    if (filtered.length == 0) {
+    if (filtered.length === 0) {
       return false;
     }
     return true;

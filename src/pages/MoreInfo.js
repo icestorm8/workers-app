@@ -8,13 +8,14 @@ const starStyle = {
   color: "orange",
 };
 export default function MoreInfo() {
-  const { addFav, removeFav, isSaved } = useContext(AppContext);
+  const { addFav, removeFav, isSaved, favs } = useContext(AppContext);
   const [isFav, setIsFav] = useState(false);
   const [searchParams] = useSearchParams();
   var index = searchParams.get("index");
-  var company = searchParams.get("company") || "abc";
+  var company = searchParams.get("company");
   const [employee, setEmployee] = useState(null);
   const navigate = useNavigate();
+
   useEffect(() => {
     const doApi = async () => {
       try {
@@ -28,14 +29,19 @@ export default function MoreInfo() {
         setEmployee(null);
       }
     };
-    doApi();
-  }, []);
+
+    if (window.location.pathname.includes("favorites")) {
+      setEmployee(favs[index]);
+    } else {
+      doApi();
+    }
+  }, [company, favs, index]);
 
   useEffect(() => {
     if (employee != null) {
       setIsFav(isSaved(employee.login.uuid));
     }
-  }, [employee]);
+  }, [employee, isSaved]);
   const goBack = () => {
     navigate(`/?search=${company}`);
   };

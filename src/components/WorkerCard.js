@@ -17,8 +17,12 @@ export default function WorkerCard({ worker, index }) {
   const [searchParams] = useSearchParams();
 
   const viewInfo = (index) => {
-    var company = searchParams.get("search") || "abc";
-    navigate(`employee/?company=${company}&index=${index}`);
+    var company = searchParams.get("search");
+    if (isFav) {
+      navigate(`employee?index=${index}`);
+    } else {
+      navigate(`employee?company=${company}&index=${index}`);
+    }
   };
 
   return (

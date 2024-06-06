@@ -17,9 +17,8 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/employee" element={<MoreInfo />} />
-            <Route path="/favorites" element={<Favorites />}>
-              <Route path="/favorites/employee" element={<MoreInfo />} />
-            </Route>
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/favorites/employee" element={<MoreInfo />} />
             <Route path="*" element={<Page404 />} />
           </Route>
         </Routes>
