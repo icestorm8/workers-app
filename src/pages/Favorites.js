@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/Context";
 import WorkerCard from "../components/WorkerCard";
+import { Link } from "react-router-dom";
 
 export default function Favorites() {
   const { favs } = useContext(AppContext);
@@ -16,10 +17,11 @@ export default function Favorites() {
               index={index}
             />
           ))}
-        {favs.length == 0 && (
+        {favs.length === 0 && (
           <div>
-            <h3 className="text-center lead">no favorites saved yet</h3>
-            <Link to={"/"}>add favorites here</Link>
+            <h3 className="text-center lead">
+              no favorites saved yet <Link to={"/"}>add favorites here</Link>
+            </h3>
           </div>
         )}
       </div>
