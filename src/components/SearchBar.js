@@ -12,7 +12,7 @@ export default function SearchBar() {
       : navigate(`/?search=${searchRef.current.value}`);
   };
   return (
-    <div className="input-group w-25 container">
+    <div className="input-group container w-25">
       <input
         ref={searchRef}
         type="text"

@@ -24,13 +24,16 @@ export default function SearchResults() {
     doApi();
   }, [searchParams]);
   return (
-    <div className="">
+    <div className="" style={{ width: "100%", height: "100%" }}>
       {searchParams.get("search") && (
         <h1 className="text-center lead">
           search for employees of: {searchParams.get("search")}
         </h1>
       )}
-      <div className="container d-flex flex-wrap justify-content-center align-items-strech p-2">
+      <div
+        className="container d-flex flex-wrap justify-content-center p-2"
+        style={{ width: "100%", height: "100%" }}
+      >
         {fetchedData.length > 0 &&
           fetchedData.map((employee, index) => (
             <WorkerCard

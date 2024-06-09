@@ -26,13 +26,16 @@ export default function WorkerCard({ worker, index }) {
   };
 
   return (
-    <div className="card  d-flex flex-row  m-1" style={{ width: "40%" }}>
+    <div className="card d-flex flex-row m-1 col-lg-4 col-md-6 col-xs-12 overflow-hidden text-wrap align-self-stretch">
       <img
         src={worker.picture.large}
-        width={200}
-        height={200}
-        className="object-fit-cover p-1"
-        style={{ borderRadius: "3%" }}
+        className="p-1"
+        style={{
+          borderRadius: "3%",
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
         alt={worker.name.first}
       ></img>
       <div className="col-7 p-3">
