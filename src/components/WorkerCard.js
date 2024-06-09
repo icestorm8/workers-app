@@ -29,16 +29,14 @@ export default function WorkerCard({ worker, index }) {
     <div className="card d-flex flex-row m-1 col-lg-4 col-md-6 col-xs-12 overflow-hidden text-wrap align-self-stretch">
       <img
         src={worker.picture.large}
-        className="p-1"
+        className="p-1 col-lg-6 col-md-6 col-sm-3 col-xs-1"
         style={{
           borderRadius: "3%",
-          width: "100%",
-          height: "100%",
           objectFit: "cover",
         }}
         alt={worker.name.first}
       ></img>
-      <div className="col-7 p-3">
+      <div className="col-lg-7 col-md-7 col-sm-7 col-xs-7 p-3">
         <h4 className="text-break col-7">
           {worker.name.first} {worker.name.last}
         </h4>

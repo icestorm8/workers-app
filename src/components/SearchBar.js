@@ -12,17 +12,19 @@ export default function SearchBar() {
       : navigate(`/?search=${searchRef.current.value}`);
   };
   return (
-    <div className="input-group container w-25">
-      <input
-        ref={searchRef}
-        type="text"
-        placeholder="search by..."
-        className="form-control"
-        onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-      />
-      <button className="btn btn-primary" onClick={handleSearch}>
-        Search
-      </button>
+    <div className="container col-lg-3 col-md-6 col-sm-5 col-xs-6">
+      <div className="input-group">
+        <input
+          ref={searchRef}
+          type="text"
+          placeholder="search by..."
+          className="form-control "
+          onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+        />
+        <button className="btn btn-primary" onClick={handleSearch}>
+          Search
+        </button>
+      </div>
     </div>
   );
 }
