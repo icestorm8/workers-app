@@ -16,6 +16,19 @@ export default function WorkerCard({ worker, index }) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
+  const changeFav = () => {
+    if (isFav) {
+      if (window.confirm("are you sure?") == true) {
+        // remove
+        setIsFav(false);
+        removeFav(worker.login.uuid);
+      }
+    } else {
+      // add
+      setIsFav(true);
+      addFav(worker);
+    }
+  };
   const viewInfo = (index) => {
     var company = searchParams.get("search") || "abc";
     if (isFav) {
@@ -46,21 +59,9 @@ export default function WorkerCard({ worker, index }) {
           more info
         </button>
         {isFav ? (
-          <FaStar
-            style={starStyle}
-            onClick={() => {
-              setIsFav(false);
-              removeFav(worker.login.uuid);
-            }}
-          />
+          <FaStar style={starStyle} onClick={changeFav} />
         ) : (
-          <FaRegStar
-            style={starStyle}
-            onClick={() => {
-              setIsFav(true);
-              addFav(worker);
-            }}
-          />
+          <FaRegStar style={starStyle} onClick={changeFav} />
         )}
       </div>
     </div>

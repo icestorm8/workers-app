@@ -5,13 +5,11 @@ export default function ContextProvider(props) {
   const [favs, setFavs] = useState([]);
   // localStorage.removeItem('favs');
   const removeFav = (uuid) => {
-    if (window.confirm("are you sure?")) {
-      var filtered = favs.filter((fav) => {
-        return fav.login.uuid !== uuid;
-      });
-      localStorage.setItem("favs", JSON.stringify(filtered));
-      setFavs(filtered);
-    }
+    var filtered = favs.filter((fav) => {
+      return fav.login.uuid !== uuid;
+    });
+    localStorage.setItem("favs", JSON.stringify(filtered));
+    setFavs(filtered);
   };
 
   const addFav = (newEmployee) => {
