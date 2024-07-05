@@ -18,7 +18,7 @@ export default function WorkerCard({ worker, index }) {
 
   const changeFav = () => {
     if (isFav) {
-      if (window.confirm("are you sure?") == true) {
+      if (window.confirm("are you sure?") === true) {
         // remove
         setIsFav(false);
         removeFav(worker.login.uuid);
